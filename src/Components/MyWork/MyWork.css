@@ -1,0 +1,136 @@
+.mywork {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    margin: 80px 10%;
+}
+
+.mywork-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row for wider screens */
+    gap: 20px;
+    width: 100%;
+}
+
+.work-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.work-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.work-item:hover {
+    transform: scale(1.05);
+}
+
+.work-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.work-item:hover .work-info {
+    opacity: 1;
+}
+
+.work-info p {
+    margin-bottom: 10px;
+}
+
+.work-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn {
+    background-color: #ff00ff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #e600e6;
+}
+
+.mywork-showmore {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 50px;
+    border: 2px solid white;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+.mywork-showmore img {
+    width: 20px;
+}
+
+.mywork-showmore:hover {
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .mywork {
+        gap: 50px;
+        margin: 50px 6%;
+        align-items: start;
+    }
+
+    .mywork-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row for smaller screens */
+        gap: 20px;
+    }
+
+    .mywork-showmore {
+        padding: 15px 30px;
+        font-size: 16px;
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .mywork {
+        margin: 30px 3%;
+        gap: 30px;
+    }
+
+    .mywork-container {
+        grid-template-columns: 2fr; /* 1 card per row for very small screens */
+    }
+
+    .mywork-showmore {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .mywork-showmore img {
+        width: 15px;
+    }
+}

@@ -1,0 +1,130 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 10%;
+}
+.nav-menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 40px;
+    font-size: 16px;
+}
+.nav-connect{
+    padding: 15px 20px;
+    border-radius: 50px;
+    background: linear-gradient(267deg, #DA7C25 0.36%, #B923E1 102.06%);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.title-box_nav{
+    position: relative;
+    width: fit-content;
+  }
+
+  title-box-nav_img{
+    width: 100px;
+  }
+  .title-box_nav h1{
+    padding: 0px 30px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .title-box_nav img{
+    width: 160px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+.nav-connect:hover{
+    transform: scale(1.05);
+}
+.nav-menu li{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.nav-menu li img{
+    display: flex;
+    margin: auto;
+}
+.anchor-link{
+    text-decoration: none;
+    color: white;
+}
+.nav-mob-close{
+    display: none;
+    cursor: pointer;
+}
+.nav-mob-open{
+    display: none;
+    cursor: pointer;
+    width: 30px;
+}
+@media(max-width:768px){
+    .navbar{
+        margin: 20px 6%;
+    }
+    .nav-connect{
+        display: none;
+    }
+    .nav-mob-open{
+        display: block;
+        position: absolute;
+        right: 30px;
+    }
+    .nav-mob-close{
+        display: block;
+        position: absolute;
+        top: 30px;
+        right: 7%;
+        width: 30px;
+    }
+    .navbar ul{
+        position: fixed;
+        flex-direction: column;
+        align-items: start;
+        top: 0;
+        gap: 30px;
+        background-color: #1F0016;
+        width: 300px;
+        height: 100%;
+        z-index: 2;
+        transition: right 0.5s;
+        right: -300px;
+        padding-top: 100px;
+    }
+    .nav-menu li{
+        font-size: 22px;
+        padding-left: 50px;
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .title-box_nav {
+        width: 90%; /* Reduce the width of the container */
+        max-width: 600px; /* Set a max-width to ensure it doesn’t get too wide on larger tablets */
+        margin: 0 auto; /* Center the container horizontally */
+        padding: 0 15px; /* Reduce padding */
+    }
+
+    .title-box_nav h1 {
+        font-size: 20px; /* Keep the font size as is or adjust if needed */
+        padding: 0 15px; /* Keep the padding consistent */
+    }
+
+    .title-box_nav img {
+        width: 100px; /* Keep the image size as is or adjust if needed */
+        position: relative; /* Change position to relative if needed */
+        bottom: auto; /* Ensure correct positioning */
+        right: auto; /* Ensure correct positioning */
+        margin-top: 10px; /* Keep the margin consistent */
+    }
+}
