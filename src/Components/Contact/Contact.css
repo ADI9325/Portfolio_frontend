@@ -1,208 +1,154 @@
-.contact{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 80px;
-    margin: 80px 10%;
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  margin: 80px 10%;
 }
 
-.contact-section{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-}
-.contact-left{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    flex-basis: 40%;
-}
-.contact-left h1{
-    font-size: 50px;
-    font-weight: 700;
-    background: linear-gradient(270deg, #DF8908 80%, #B415FF 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.contact-left p{
-    max-width: 550px;
-    color: #D8D8D8;
-    font-size: 16px;
-    line-height: 25px;
-}
-.contact-details{
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    color: #D8D8D8;
-    font-size: 22px;
-}
-.contact-detail{
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-.contact-detail img{
-    width: 25px;
-}
-.contact-right{
-    flex-basis: 55%;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 15px;
+.contact-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
 }
 
-.contact-right label{
-    color: #D8D8D8;
-
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-basis: 40%;
 }
 
-.contact-right input, .contact-right textarea{
-    border: none;
-    width: 100%;
-    padding: 18px 0;
-    padding-left: 20px;
-    border-radius: 4px;
-    background: #32323c;
-    color: #A0A0A0;
-    font-family: Outfit;
-    font-size: 18px;
+.contact-left h1 {
+  font-size: 50px;
+  font-weight: 700;
+  background: linear-gradient(270deg, #DF8908 80%, #B415FF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-
-.contact-submit{
-    border: none;
-    color: white;
-    border-radius: 50px;
-    background: linear-gradient(264deg, #DF8908 -5.09%, #B415FF 106.28%);
-    font-size: 18px;
-    padding: 18px 40px;
-    margin-bottom: 50px;
-    margin-top: 15px;
-    cursor: pointer;
-    transition: 0.3s;
+.contact-left p {
+  max-width: 550px;
+  color: #D8D8D8;
+  font-size: 16px;
+  line-height: 25px;
 }
-.contact-submit:hover{
-    transform: scale(1.1);
-    transition: 0.3s;
-}
-@media(max-width:768px){
-    .contact{
-        gap: 40px;
-        margin: 50px 6%;
-        align-items: start;
-    }
-   
-    .contact-section{
-        flex-direction: column;
-    }
-    .contact-left h1{
-        font-size: 35px;
-    }
-   
-    .contact-detail{
-        gap: 12px;
-    }
-    .contact-detail img{
-        width: 20px;
-    }
-    .contact-left{
-        margin-bottom: 30px;
-    }
-    .contact-right label{
-        font-size: 14px;
-    }
 
-    .contact-submit {
-        position: relative;
-        transition: all 0.5s ease;
-      }
-      
-      .contact-submit.fly {
-        animation: fly-away 1s ease-in-out forwards;
-      }
-      
-      @keyframes fly-away {
-        0% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(200px, -200px) scale(0.8);
-          opacity: 0.5;
-        }
-        100% {
-          transform: translate(500px, -500px) scale(0.5);
-          opacity: 0;
-        }
-      }
-      .message {
-        margin-top: 20px;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-      }
-      
-      .message.success {
-        color: #155724;
-        background-color: #d4edda;
-        border: 1px solid #c3e6cb;
-      }
-      
-      .message.error {
-        color: #721c24;
-        background-color: #f8d7da;
-        border: 1px solid #f5c6cb;
-      }
-      /* Existing styles */
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  color: #D8D8D8;
+  font-size: 22px;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.contact-right {
+  flex-basis: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-right input,
+.contact-right textarea {
+  border: none;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 4px;
+  background: #32323c;
+  color: #A0A0A0;
+  font-family: Outfit;
+  font-size: 18px;
+}
 
 .contact-submit {
-    position: relative;
-    border: none;
-    color: white;
-    border-radius: 50px;
-    background: linear-gradient(264deg, #DF8908 -5.09%, #B415FF 106.28%);
-    font-size: 18px;
-    padding: 18px 40px;
-    margin-bottom: 50px;
-    margin-top: 15px;
-    cursor: pointer;
-    transition: 0.3s;
+  border: none;
+  color: white;
+  border-radius: 50px;
+  background: linear-gradient(264deg, #DF8908 -5.09%, #B415FF 106.28%);
+  font-size: 18px;
+  padding: 18px 40px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-submit:hover {
+  transform: scale(1.1);
+}
+
+.contact-submit.fly {
+  animation: fly 1s ease-in-out;
+}
+
+@keyframes fly {
+  0% {
+    transform: translateY(0);
   }
-  
-  .contact-submit:hover {
-    transform: scale(1.1);
-    transition: 0.3s;
+  50% {
+    transform: translateY(-50px);
   }
-  
-  .contact-submit.disabled {
-    cursor: not-allowed;
-    background: gray; /* Optional: visually indicate disabled state */
+  100% {
+    transform: translateY(0);
   }
-  
-  /* Flying effect */
-  .contact-submit.fly {
-    animation: fly-away 1s ease-in-out forwards;
+}
+
+@media(max-width:768px) {
+  .contact {
+    gap: 40px;
+    margin: 50px 6%;
+    align-items: flex-start;
   }
-  
-  @keyframes fly-away {
-    0% {
-      transform: translate(0, 0);
-    }
-    50% {
-      transform: translate(200px, -200px) scale(0.8);
-      opacity: 0.5;
-    }
-    100% {
-      transform: translate(500px, -500px) scale(0.5);
-      opacity: 0;
-    }
+
+  .contact-section {
+    flex-direction: column;
   }
-  
-    
+
+  .contact-left h1 {
+    font-size: 35px;
+  }
+
+  .contact-left,
+  .contact-right {
+    width: 100%;
+  }
+
+  .contact-detail img {
+    width: 20px;
+  }
+}
+
+/* Add a blur effect and dim background for the form when submitting */
+.contact-right.blur {
+  filter: blur(5px);
+  opacity: 0.6;
+}
+
+/* Style for the processing animation in the middle of the form */
+.submission-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  z-index: 1000; /* Ensures it's on top of the blurred form */
+}
+
+/* Disable button and change color after submission */
+.contact-submit.disabled {
+  background-color: gray;
+  cursor: not-allowed;
+  pointer-events: none;
 }

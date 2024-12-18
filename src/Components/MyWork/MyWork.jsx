@@ -2,7 +2,7 @@ import React from 'react'
 import './MyWork.css'
 import theme_pattern from '../../assets/theme_pattern.svg'
 import mywork_data from '../../assets/mywork_data'
-import arrow_icon  from '../../assets/arrow_icon.svg'
+// import arrow_icon  from '../../assets/arrow_icon.svg'
 
 const MyWork = () => {
   return (
@@ -19,8 +19,14 @@ const MyWork = () => {
               <div className="work-info">
                 <p>{work.description}</p>
                 <div className="work-buttons">
-                  <button className="btn view-btn">View</button>
-                  <button className="btn source-code-btn">Source Code</button>
+                  {/* <button className="btn view-btn">View</button> */}
+                  <button
+                    className="btn source-code-btn"
+                    onClick={() => window.location.href = "https://github.com/ADI9325?tab=repositories"}
+                  >
+                    Source Code
+                  </button>
+
                 </div>
               </div>
             </div>

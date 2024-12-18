@@ -17,19 +17,21 @@ const About = () => {
         </div>
         <div className="about-right">
           <div className="about-para">
-            <p>I am Aditya Bagade, a dedicated Frontend Developer based in Pune, India, with a strong background in backend development. Over the course of my career, I've developed and optimized web applications, contributed to secure and efficient systems, and collaborated with teams to deliver high-quality projects.</p>
-            <p>My expertise spans across a wide range of technologies, including PHP, ReactJS, JavaScript, HTML, CSS, and Laravel. I have a passion for creating dynamic and user-friendly interfaces, and I am committed to continuous learning and professional growth.</p>
+            <p>I am Aditya Bagade, a dedicated Full Stack Developer based in Pune, India, with expertise in both frontend and backend development. Over the course of my career, I've developed and optimized web applications, contributed to secure and efficient systems, and collaborated with teams to deliver high-quality projects.</p>
+            <p>My expertise spans across a wide range of technologies, including ReactJS, NextJS, JavaScript, BootStrap, Tailwind CSS, and ExpressJS, NodeJS, Laravel. I have a passion for creating dynamic and user-friendly interfaces, and I am committed to continuous learning and professional growth.</p>
           </div>
           <div className="about-skills">
-            <div className="about-skill"><p>HTML & CSS</p><hr style={{ width: "50%" }} /></div>
+            <div className="about-skill"><p>HTML & CSS</p><hr style={{ width: "70%" }} /></div>
             <div className="about-skill"><p>React JS</p><hr style={{ width: "70%" }} /></div>
-            <div className="about-skill"><p>JavaScript</p><hr style={{ width: "60%" }} /></div>
-            <div className="about-skill"><p>Next JS</p><hr style={{ width: "50%" }} /></div>
-            <div className="about-skill"><p>PHP</p><hr style={{ width: "65%" }} /></div>
-            <div className="about-skill"><p>Laravel</p><hr style={{ width: "55%" }} /></div>
+            <div className="about-skill"><p>JavaScript</p><hr style={{ width: "80%" }} /></div>
+            <div className="about-skill"><p>Next JS</p><hr style={{ width: "60%" }} /></div>
+            <div className="about-skill"><p>AJAX</p><hr style={{ width: "50%" }} /></div>
+            <div className="about-skill"><p>PHP</p><hr style={{ width: "70%" }} /></div>
+            <div className="about-skill"><p>Laravel</p><hr style={{ width: "65%" }} /></div>
+            <div className="about-skill"><p>Express & Node</p><hr style={{ width: "65%" }} /></div>
             <div className="about-skill"><p>MySQL</p><hr style={{ width: "60%" }} /></div>
-            <div className="about-skill"><p>NodeJS</p><hr style={{ width: "50%" }} /></div>
-            <div className="about-skill"><p>AJAX</p><hr style={{ width: "45%" }} /></div>
+            <div className="about-skill"><p>MongoDB</p><hr style={{ width: "60%" }} /></div>
+            
           </div>
 
         </div>

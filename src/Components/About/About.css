@@ -85,7 +85,10 @@
     transform: scale(1.12);
     transition: 0.5s;
 }
-@media(max-width:768px){
+
+
+
+@media(max-width:850px){
     .about{
         gap: 50px;
         margin: 50px 6%;

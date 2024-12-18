@@ -1,7 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
-import user_icon from '../../assets/user_icon.svg';
+import { SiLeetcode } from "react-icons/si";
 import theme_pattern from '../../assets/theme_pattern.svg';
 
 const Footer = () => {
@@ -15,13 +15,6 @@ const Footer = () => {
           </div>
           <p>Full-Stack Developer from Pune, India. Skilled in Laravel, MySQL, JavaScript, and ReactJS. Passionate about creating dynamic and secure web applications.</p>
         </div>
-        <div className="footer-top-right">
-          <div className="footer-email-input">
-            <img src={user_icon} alt="" />
-            <input type="email" placeholder='Enter your email' />
-          </div>
-          <div className="footer-subscribe">Send</div>
-        </div>
       </div>
       <hr />
       <div className="footer-bottom">
@@ -30,14 +23,17 @@ const Footer = () => {
           <p>Terms of Services</p>
           <p>Privacy Policy</p>
           <div className="social-icons">
-            <a href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/its_aadi04" target="_blank" rel="noopener noreferrer">
               <FaInstagram />
             </a>
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/its-aadi04/" target="_blank" rel="noopener noreferrer">
               <FaLinkedin />
             </a>
-            <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer">
-              <FaGithub />
+            <a href="https://github.com/ADI9325" target="_blank" rel="noopener noreferrer">
+              <FaGithub />             
+            </a>
+            <a href="https://leetcode.com/u/its_adii04/" target="_blank" rel="noopener noreferrer">
+              <SiLeetcode />
             </a>
           </div>
         </div>

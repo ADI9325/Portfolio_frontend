@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Contact.css';
 import theme_pattern from '../../assets/theme_pattern.svg';
 import mail_icon from '../../assets/mail_icon.svg';
 import location_icon from '../../assets/location_icon.svg';
 import call_icon from '../../assets/call_icon.svg';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
 
   useEffect(() => {
     const submissionStatus = localStorage.getItem('formSubmitted');
@@ -19,6 +23,7 @@ const Contact = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
+    setIsFailed(false);
 
     const formData = new FormData(event.target);
     const object = Object.fromEntries(formData);
@@ -34,19 +39,28 @@ const Contact = () => {
         body: json
       });
 
-      const result = await res.json();
+      document.querySelector('.contact-submit').classList.add('fly');
+
       if (res.ok) {
         setIsSubmitted(true);
         localStorage.setItem('formSubmitted', 'true');
 
-        // Trigger the flying effect
-        document.querySelector('.contact-submit').classList.add('fly');
+        // Clear the form fields
+        event.target.reset();
+
+        // Show success message and animation
+        toast.success("Submitted Successfully!");
+
         setTimeout(() => {
           setIsSubmitting(false);
         }, 1000); // Duration of the animation
+      } else {
+        throw new Error('Failed to submit');
       }
     } catch (err) {
       console.error('Submission failed:', err);
+      setIsFailed(true);
+      toast.error("Error: Submission Failed!");
       setIsSubmitting(false);
     }
   };
@@ -73,23 +87,60 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <form onSubmit={onSubmit} className="contact-right">
-          <label htmlFor="">Your Name</label>
-          <input type="text" placeholder='Enter your name' name='name' required disabled={isSubmitted} />
-          <label htmlFor="">Your Email</label>
-          <input type="email" placeholder='Enter your email' name='email' required disabled={isSubmitted} />
-          <label htmlFor="">Write your message here</label>
-          <textarea name="message" rows="8" placeholder='Enter your message' required disabled={isSubmitted}></textarea>
+        <form
+          onSubmit={onSubmit}
+          className={`contact-right ${isSubmitting ? 'blur' : ''}`}
+        >
+          <label>Your Name</label>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            name="name"
+            required
+            disabled={isSubmitted}
+          />
+          <label>Your Email</label>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            required
+            disabled={isSubmitted}
+          />
+          <label>Write your message here</label>
+          <textarea
+            name="message"
+            rows="8"
+            placeholder="Enter your message"
+            required
+            disabled={isSubmitted}
+          ></textarea>
 
-          <button
-            type='submit'
+          <motion.button
+            type="submit"
             className={`contact-submit ${isSubmitting || isSubmitted ? 'disabled' : ''}`}
             disabled={isSubmitting || isSubmitted}
+            whileTap={{ scale: 0.9 }}
           >
-            {isSubmitted ? 'Submitted' : 'Submit now'}
-          </button>
+            {isSubmitted ? 'Submitted Successfully' : isFailed ? 'Retry Submission' : 'Submit now'}
+          </motion.button>
         </form>
+
+        <AnimatePresence>
+          {isSubmitting && (
+            <motion.div
+              className="submission-animation"
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ duration: 0.5 }}
+            >
+             Please wait...
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
+      <ToastContainer />
     </div>
   );
 };
