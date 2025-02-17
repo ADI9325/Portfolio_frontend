@@ -21,12 +21,12 @@ const About = () => {
             <p>My expertise spans across a wide range of technologies, including ReactJS, NextJS, JavaScript, BootStrap, Tailwind CSS, and ExpressJS, NodeJS, Laravel. I have a passion for creating dynamic and user-friendly interfaces, and I am committed to continuous learning and professional growth.</p>
           </div>
           <div className="about-skills">
-            <div className="about-skill"><p>HTML & CSS</p><hr style={{ width: "70%" }} /></div>
-            <div className="about-skill"><p>React JS</p><hr style={{ width: "70%" }} /></div>
+            <div className="about-skill"><p>NextJS</p><hr style={{ width: "70%" }} /></div>
+            <div className="about-skill"><p>ReactJS</p><hr style={{ width: "70%" }} /></div>
             <div className="about-skill"><p>JavaScript</p><hr style={{ width: "80%" }} /></div>
-            <div className="about-skill"><p>Next JS</p><hr style={{ width: "60%" }} /></div>
-            <div className="about-skill"><p>AJAX</p><hr style={{ width: "50%" }} /></div>
-            <div className="about-skill"><p>PHP</p><hr style={{ width: "70%" }} /></div>
+            <div className="about-skill"><p>NodeJS</p><hr style={{ width: "60%" }} /></div>
+            <div className="about-skill"><p>Authentication</p><hr style={{ width: "50%" }} /></div>
+            <div className="about-skill"><p>RESTful APIs</p><hr style={{ width: "70%" }} /></div>
             <div className="about-skill"><p>Laravel</p><hr style={{ width: "65%" }} /></div>
             <div className="about-skill"><p>Express & Node</p><hr style={{ width: "65%" }} /></div>
             <div className="about-skill"><p>MySQL</p><hr style={{ width: "60%" }} /></div>
@@ -38,7 +38,7 @@ const About = () => {
       </div>
       <div className="about-achievements">
         <div className="about-achievement">
-        <h1>6 Months</h1>
+        <h1>1 year+</h1>
         <p>HANDS-ON EXPERIENCE</p>
         </div>
         <hr />
