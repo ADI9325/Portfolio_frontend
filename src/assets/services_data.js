@@ -1,34 +1,34 @@
 const Services_Data = [
     {
         s_no: "01",
-        s_name: "Backend Development",
-        s_desc: "Design and develop robust backend systems using Laravel and Node.js, focusing on building scalable APIs, user authentication, and efficient data management."
+        s_name: "Full-Stack Development",
+        s_desc: "Build complete web applications using React.js, TypeScript, Node.js, and Express.js with secure authentication, responsive UI, and scalable architecture."
     },
     {
         s_no: "02",
-        s_name: "Web Application Development",
-        s_desc: "Create dynamic and responsive web applications using HTML, CSS, JavaScript, and ReactJS, tailored to meet specific client needs with seamless user interfaces."
+        s_name: "SaaS Platform Development",
+        s_desc: "Develop multi-tenant SaaS platforms with role-based access control, JWT authentication, and comprehensive user management systems for educational and business applications."
     },
     {
         s_no: "03",
-        s_name: "API Integration & Development",
-        s_desc: "Build and integrate secure APIs with JWT authentication for mobile and web applications, ensuring smooth data exchange between systems."
+        s_name: "AI-Powered Solutions",
+        s_desc: "Create AI-driven applications with GitHub integration, repository analysis, automated code reviews, and intelligent insights using modern AI technologies and APIs."
     },
     {
         s_no: "04",
-        s_name: "Database Management",
-        s_desc: "Develop and manage databases using MySQL and MongoDB, focusing on efficient data storage, retrieval, and maintenance for high-performance applications."
+        s_name: "API Development & Integration",
+        s_desc: "Design and develop robust RESTful APIs with Express.js, TypeScript, and secure authentication. Integrate third-party APIs including GitHub, OAuth, and AI services."
     },
     {
         s_no: "05",
-        s_name: "Security & Authentication Solutions",
-        s_desc: "Implement multi-step authentication processes and secure login systems to protect sensitive data and ensure user privacy in web applications."
+        s_name: "Cloud Deployment & DevOps",
+        s_desc: "Deploy applications on AWS EC2, S3, configure NGINX, manage webhooks, and handle complete DevOps setup with environment configurations and HTTPS security."
     },
     {
         s_no: "06",
-        s_name: "Full-Stack Development",
-        s_desc: "Deliver complete full-stack solutions by integrating frontend technologies like ReactJS with backend frameworks such as Laravel, and ensuring data integrity with robust database management."
-    },
+        s_name: "Database Design & Management",
+        s_desc: "Design efficient database schemas using MySQL, MongoDB, and PostgreSQL with Mongoose ODM. Implement data segregation, optimization, and secure data management."
+    }
 ]
 
 export default Services_Data;
