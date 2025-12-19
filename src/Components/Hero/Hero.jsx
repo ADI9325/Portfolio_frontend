@@ -8,7 +8,11 @@ const Hero = () => {
     <div id='home' className='hero'>
       <div className="hero-content">
         <div className="profile-container">
-          <img src={profile_img} alt="Aditya Bagade - Full Stack Developer" className='profile-img' />
+          <img 
+            src={profile_img} 
+            alt="Aditya Bagade - Full Stack Developer" 
+            className='profile-img' 
+          />
         </div>
         
         <div className="hero-text">
@@ -18,32 +22,41 @@ const Hero = () => {
             <span className="hero-title">Full-Stack Developer</span>
           </h1>
           <p className="hero-description">
-            Passionate developer with 2+ years of experience crafting scalable web applications, 
-            SaaS platforms, and AI-powered solutions. Specialized in modern technologies like 
-            React, Node.js, and cloud deployment.
+            Results-driven Full-Stack Developer with <strong>4+ years of experience</strong> 
+            building scalable web applications, SaaS platforms, and AI-powered systems. 
+            Specialized in <strong>React, TypeScript, Node.js, Python</strong>, and 
+            <strong> AWS-based cloud deployments</strong>.
           </p>
         </div>
 
         <div className="hero-stats">
           <div className="hero-stat">
-            <div className="hero-stat-number">2+</div>
+            <div className="hero-stat-number">4+</div>
             <div className="hero-stat-label">Years Experience</div>
           </div>
           <div className="hero-stat">
-            <div className="hero-stat-number">300+</div>
+            <div className="hero-stat-number">500+</div>
             <div className="hero-stat-label">Problems Solved</div>
           </div>
           <div className="hero-stat">
             <div className="hero-stat-number">5⭐</div>
-            <div className="hero-stat-label">Java Rating</div>
+            <div className="hero-stat-label">DSA / Java Rating</div>
           </div>
         </div>
 
         <div className="hero-action">
-          <AnchorLink className='hero-connect anchor-link' offset={50} href='#contact'>
+          <AnchorLink 
+            className='hero-connect anchor-link' 
+            offset={50} 
+            href='#contact'
+          >
             Let's Connect
           </AnchorLink>
-          <AnchorLink className='hero-resume anchor-link' offset={50} href='#about'>
+          <AnchorLink 
+            className='hero-resume anchor-link' 
+            offset={50} 
+            href='#about'
+          >
             About Me
           </AnchorLink>
         </div>
