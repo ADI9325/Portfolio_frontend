@@ -1,0 +1,12 @@
+{
+  "name": "Aditya Bagade - Full-Stack Developer",
+  "short_name": "Aditya Bagade",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "theme_color": "#0f1115",
+  "background_color": "#0f1115",
+  "display": "standalone",
+  "start_url": "/"
+}

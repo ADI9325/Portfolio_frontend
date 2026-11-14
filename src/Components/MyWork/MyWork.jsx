@@ -19,7 +19,7 @@ const MyWork = () => {
           <article key={work.title} className="card work-card">
             <div className="work-cover">
               {work.cover ? (
-                <img src={work.cover} alt={`${work.title} screenshot`} loading="lazy" />
+                <img src={work.cover} alt={`${work.title} screenshot`} loading="lazy" decoding="async" width="1600" height="900" />
               ) : (
                 <div className="work-cover-empty mono" aria-hidden="true">
                   <span className="accent">{'</>'}</span> {initials(work.title)}

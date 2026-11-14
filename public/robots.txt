@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aditya-portfolio-woad-nine.vercel.app/sitemap.xml
