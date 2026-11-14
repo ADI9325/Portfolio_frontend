@@ -1,83 +1,67 @@
-import React from 'react'
 import './Services.css'
-import theme_pattern from '../../assets/theme_pattern.svg'
+
+const servicesData = [
+  {
+    s_no: "01",
+    s_name: "Backend & API Development",
+    s_desc: "Design and build secure REST APIs with Node.js, TypeScript, NestJS and Express.js: authentication, role-based access, validation and clean, modular architecture.",
+    features: ["Node.js", "NestJS", "Express.js", "TypeScript"]
+  },
+  {
+    s_no: "02",
+    s_name: "Full-Stack SaaS Development",
+    s_desc: "Build complete multi-tenant SaaS products end to end, from PostgreSQL schema to React / Next.js screens, with JWT auth, RBAC and admin panels.",
+    features: ["Multi-tenant", "RBAC", "React", "Next.js"]
+  },
+  {
+    s_no: "03",
+    s_name: "Python & Data Services",
+    s_desc: "Build Python (FastAPI) services for data-heavy products: scheduled syncs from external APIs, retries, idempotent jobs and analytics calculations.",
+    features: ["Python", "FastAPI", "Background Jobs", "Queues"]
+  },
+  {
+    s_no: "04",
+    s_name: "Integrations & Payments",
+    s_desc: "Connect products to third-party services: WhatsApp Business API, Stripe payments, GitHub APIs, email, LinkedIn, DeepL and financial data APIs.",
+    features: ["WhatsApp API", "Stripe", "Webhooks", "Third-party APIs"]
+  },
+  {
+    s_no: "05",
+    s_name: "AI-Powered Features",
+    s_desc: "Add AI to real products: assistants with function calling over your data, AI content generation, and code-review automation using Gemini and OpenAI.",
+    features: ["Google Gemini", "OpenAI", "Function Calling", "Automation"]
+  },
+  {
+    s_no: "06",
+    s_name: "Databases, Cloud & DevOps",
+    s_desc: "Design PostgreSQL schemas with Drizzle or Prisma, add Redis caching, and ship with Docker, CI/CD, NGINX or Caddy on AWS and Vercel.",
+    features: ["PostgreSQL", "Docker", "AWS", "CI/CD"]
+  }
+];
 
 const Services = () => {
-  const servicesData = [
-    {
-      s_no: "01",
-      s_name: "Full-Stack Development",
-      s_desc: "Build complete web applications using React.js, TypeScript, Node.js, and Express.js with secure authentication, responsive UI, and scalable architecture.",
-      features: ["React.js", "TypeScript", "Node.js", "Express.js"]
-    },
-    {
-      s_no: "02",
-      s_name: "SaaS Platform Development",
-      s_desc: "Develop multi-tenant SaaS platforms with role-based access control, JWT authentication, and comprehensive user management systems for educational and business applications.",
-      features: ["Multi-tenant", "RBAC", "JWT Auth", "User Management"]
-    },
-    {
-      s_no: "03",
-      s_name: "AI-Powered Solutions",
-      s_desc: "Create AI-driven applications with GitHub integration, repository analysis, automated code reviews, and intelligent insights using modern AI technologies and APIs.",
-      features: ["AI Integration", "GitHub APIs", "Code Analysis", "Automation"]
-    },
-    {
-      s_no: "04",
-      s_name: "API Development & Integration",
-      s_desc: "Design and develop robust RESTful APIs with Express.js, TypeScript, and secure authentication. Integrate third-party APIs including GitHub, OAuth, and AI services.",
-      features: ["RESTful APIs", "OAuth", "Third-party APIs", "Security"]
-    },
-    {
-      s_no: "05",
-      s_name: "Cloud Deployment & DevOps",
-      s_desc: "Deploy applications on AWS EC2, S3, configure NGINX, manage webhooks, and handle complete DevOps setup with environment configurations and HTTPS security.",
-      features: ["AWS EC2", "S3", "NGINX", "DevOps"]
-    },
-    {
-      s_no: "06",
-      s_name: "Database Design & Management",
-      s_desc: "Design efficient database schemas using MySQL, MongoDB, and PostgreSQL with Mongoose ODM. Implement data segregation, optimization, and secure data management.",
-      features: ["MySQL", "MongoDB", "PostgreSQL", "Optimization"]
-    }
-  ];
-
   return (
-    <div id='services' className='services'>
-      <div className="title-box">
-        <h1>My Services</h1>
-        <img src={theme_pattern} alt="" />
+    <section id="services" className="section">
+      <div className="section-head">
+        <p className="section-label">02. services</p>
+        <h2>What I can build for you</h2>
       </div>
-      
-      <div className="services-separator"></div>
-      
-      <div className="services-container">
-        {servicesData.map((service, index) => {
-          return (
-            <div key={index} className='services-format'>
-              <div className="services-header">
-                <div className="services-number">{service.s_no}</div>
-                <h2>{service.s_name}</h2>
-              </div>
-              
-              <div className="services-content">
-                <p>{service.s_desc}</p>
-                
-                <div className="services-features">
-                  {service.features.map((feature, idx) => (
-                    <span key={idx} className="service-tag">{feature}</span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className='services-readmore'>
-                <span>Learn More</span>
-              </div>
+
+      <div className="services-grid">
+        {servicesData.map((service) => (
+          <article key={service.s_no} className="card service-card">
+            <span className="service-num mono">{service.s_no}</span>
+            <h3>{service.s_name}</h3>
+            <p>{service.s_desc}</p>
+            <div className="chip-list">
+              {service.features.map((f) => (
+                <span key={f} className="chip">{f}</span>
+              ))}
             </div>
-          )
-        })}
+          </article>
+        ))}
       </div>
-    </div>
+    </section>
   )
 }
 

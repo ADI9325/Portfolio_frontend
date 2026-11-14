@@ -1,43 +1,50 @@
-import React from 'react'
+import { FiArrowUpRight } from 'react-icons/fi'
 import './MyWork.css'
-import theme_pattern from '../../assets/theme_pattern.svg'
 import mywork_data from '../../assets/mywork_data'
-// import arrow_icon  from '../../assets/arrow_icon.svg'
+
+const initials = (title) =>
+  title.split(/\s+/).filter((w) => /^[A-Za-z]/.test(w)).slice(0, 2).map((w) => w[0]).join('').toUpperCase()
 
 const MyWork = () => {
   return (
-    <div id='work' className='mywork'>
-      <div className="title-box">
-        <h1>My latest work</h1>
-        <img src={theme_pattern} alt="" />
+    <section id="work" className="section">
+      <div className="section-head">
+        <p className="section-label">03. work</p>
+        <h2>Projects I’ve built</h2>
+        <p>Production work from CodeMirror Technologies, CodeClout and freelance clients.</p>
       </div>
-      <div className="mywork-container">
-        {mywork_data.map((work, index) => {
-          return (
-            <div key={index} className="work-item">
-              <img src={work.w_img} alt="" />
-              <div className="work-info">
-                <p>{work.description}</p>
-                <div className="work-buttons">
-                  {/* <button className="btn view-btn">View</button> */}
-                  <button
-                    className="btn source-code-btn"
-                    onClick={() => window.location.href = "https://github.com/ADI9325?tab=repositories"}
-                  >
-                    Source Code
-                  </button>
 
+      <div className="work-grid">
+        {mywork_data.map((work) => (
+          <article key={work.title} className="card work-card">
+            <div className="work-cover">
+              {work.cover ? (
+                <img src={work.cover} alt={`${work.title} screenshot`} loading="lazy" />
+              ) : (
+                <div className="work-cover-empty mono" aria-hidden="true">
+                  <span className="accent">{'</>'}</span> {initials(work.title)}
                 </div>
-              </div>
+              )}
             </div>
-          );
-        })}
+            <div className="work-body">
+              <span className="work-cat mono">{work.category}</span>
+              <h3>{work.title}</h3>
+              <p>{work.summary}</p>
+              <div className="chip-list">
+                {work.stack.map((tech) => (
+                  <span key={tech} className="chip">{tech}</span>
+                ))}
+              </div>
+              {work.link && (
+                <a className="work-link mono" href={work.link} target="_blank" rel="noopener noreferrer">
+                  {(work.linkLabel || 'case study').toLowerCase()} <FiArrowUpRight />
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
-      {/* <div className="mywork-showmore">
-        <p>Show More</p>
-        <img src={arrow_icon} alt="" />
-      </div> */}
-    </div>
+    </section>
   )
 }
 

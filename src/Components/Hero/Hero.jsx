@@ -1,72 +1,80 @@
-import React from 'react'
+import { FiArrowRight, FiGithub } from 'react-icons/fi'
 import './Hero.css'
-import profile_img from '../../assets/profile_img.svg'
-import AnchorLink from 'react-anchor-link-smooth-scroll'
+
+const stack = ['Node.js', 'TypeScript', 'NestJS', 'Express.js', 'Python', 'FastAPI', 'React', 'Next.js', 'PostgreSQL', 'Docker', 'AWS']
+
+const profile = [
+  ['role', 'Full-Stack Developer'],
+  ['focus', 'Backend & APIs'],
+  ['stack', 'Node · NestJS · Express · Python · React'],
+  ['db', 'PostgreSQL'],
+  ['location', 'Pune, India'],
+  ['openToRemote', true],
+]
+
+const stats = [
+  { value: '4+', label: 'years experience' },
+  { value: '12', label: 'projects shipped' },
+  { value: '300+', label: 'DSA problems' },
+  { value: '300+', label: 'automated tests' },
+]
 
 const Hero = () => {
   return (
-    <div id='home' className='hero'>
-      <div className="hero-content">
-        <div className="profile-container">
-          <img 
-            src={profile_img} 
-            alt="Aditya Bagade - Full Stack Developer" 
-            className='profile-img' 
-          />
-        </div>
-        
+    <section id="home" className="hero">
+      <div className="hero-grid">
         <div className="hero-text">
-          <div className="hero-greeting">Hello, I'm</div>
+          <p className="hero-prompt mono"><span className="accent">$</span> whoami</p>
           <h1>
-            <span className="hero-name">Aditya Bagade</span>
-            <span className="hero-title">Full-Stack Developer</span>
+            Aditya Bagade
+            <span>Full-stack developer, backend first.</span>
           </h1>
-          <p className="hero-description">
-            Results-driven Full-Stack Developer with <strong>4+ years of experience</strong> 
-            building scalable web applications, SaaS platforms, and AI-powered systems. 
-            Specialized in <strong>React, TypeScript, Node.js, Python</strong>, and 
-            <strong> AWS-based cloud deployments</strong>.
+          <p className="hero-desc">
+            I build production SaaS end to end: REST APIs, auth, queues and PostgreSQL with
+            Node.js, NestJS, Express and Python, then the React / Next.js UI on top.
+            4+ years shipping fintech, HR, marketing and AI products.
           </p>
-        </div>
-
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <div className="hero-stat-number">4+</div>
-            <div className="hero-stat-label">Years Experience</div>
-          </div>
-          <div className="hero-stat">
-            <div className="hero-stat-number">500+</div>
-            <div className="hero-stat-label">Problems Solved</div>
-          </div>
-          <div className="hero-stat">
-            <div className="hero-stat-number">5⭐</div>
-            <div className="hero-stat-label">DSA / Java Rating</div>
+          <div className="hero-actions">
+            <a href="#work" className="btn btn-primary">view my work <FiArrowRight /></a>
+            <a href="#contact" className="btn">get in touch</a>
+            <a href="https://github.com/ADI9325" target="_blank" rel="noopener noreferrer" className="btn" aria-label="GitHub profile">
+              <FiGithub /> github
+            </a>
           </div>
         </div>
 
-        <div className="hero-action">
-          <AnchorLink 
-            className='hero-connect anchor-link' 
-            offset={50} 
-            href='#contact'
-          >
-            Let's Connect
-          </AnchorLink>
-          <AnchorLink 
-            className='hero-resume anchor-link' 
-            offset={50} 
-            href='#about'
-          >
-            About Me
-          </AnchorLink>
+        <div className="hero-terminal" aria-label="Profile summary">
+          <div className="term-bar">
+            <i></i><i></i><i></i>
+            <span className="mono">aditya.ts</span>
+          </div>
+          <pre className="term-body mono">
+            <span className="t-key">const</span> <span className="t-var">aditya</span>{' = {\n'}
+            {profile.map(([key, value]) => (
+              <span key={key}>
+                {'  '}{key}: {typeof value === 'boolean'
+                  ? <span className="t-key">{String(value)}</span>
+                  : <span className="t-str">{`'${value}'`}</span>},{'\n'}
+              </span>
+            ))}
+            {'};'}
+          </pre>
         </div>
       </div>
 
-      <div className="hero-scroll-indicator">
-        <div className="scroll-arrow"></div>
-        <div className="scroll-text">Scroll Down</div>
+      <div className="chip-list hero-stack">
+        {stack.map((s) => <span key={s} className="chip">{s}</span>)}
       </div>
-    </div>
+
+      <div className="hero-stats">
+        {stats.map((s) => (
+          <div key={s.label} className="hero-stat">
+            <div className="hero-stat-value">{s.value}</div>
+            <div className="hero-stat-label mono">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }
 

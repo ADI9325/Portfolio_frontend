@@ -1,99 +1,72 @@
-import React, { useRef, useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { FiMenu, FiX } from 'react-icons/fi'
 import './Navbar.css'
-import underline from '../../assets/nav_underline.svg'
-import AnchorLink from 'react-anchor-link-smooth-scroll'
-import menu_open from '../../assets/menu_open.svg'
-import menu_close from '../../assets/menu_close.svg'
-import theme_pattern from '../../assets/theme_pattern.svg'
+
+const links = [
+  { id: 'about', label: 'about' },
+  { id: 'services', label: 'services' },
+  { id: 'work', label: 'work' },
+  { id: 'contact', label: 'contact' },
+]
 
 const Navbar = () => {
-  const [menu, setMenu] = useState("home");
-  const [isScrolled, setIsScrolled] = useState(false);
-  const menuRef = useRef();
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [active, setActive] = useState('')
 
-  // Handle scroll effect
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
-    };
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10)
+      let current = ''
+      for (const { id } of links) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= 120) current = id
+      }
+      setActive(current)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const openMenu = () => {
-    menuRef.current.style.right = "0";
-    document.body.style.overflow = "hidden"; // Prevent body scroll when menu is open
-  }
-
-  const closeMenu = () => {
-    menuRef.current.style.right = "-300px";
-    document.body.style.overflow = "auto"; // Restore body scroll
-  }
-
-  const handleMenuClick = (menuItem) => {
-    setMenu(menuItem);
-    closeMenu(); // Close mobile menu when item is clicked
-  }
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
 
   return (
-    <div className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
-      <div className="title-box_nav">
-        <AnchorLink className='anchor-link' href='#home' offset={100}>
-          <h1>Aditya Bagade</h1>
-          <span className="nav-subtitle">Full-Stack Developer</span>
-        </AnchorLink>
-        <img className="title-box-nav_img" src={theme_pattern} alt="" />
+    <header className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
+      <div className="nav-inner">
+        <a href="#home" className="nav-logo mono" onClick={() => setOpen(false)}>
+          <span className="accent">~/</span>aditya
+        </a>
+
+        <nav className={`nav-links ${open ? 'nav-open' : ''}`} aria-label="Main">
+          {links.map(({ id, label }, i) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={`mono ${active === id ? 'active' : ''}`}
+              onClick={() => setOpen(false)}
+            >
+              <span className="nav-num">0{i + 1}.</span>{label}
+            </a>
+          ))}
+          <a href="#contact" className="btn btn-primary nav-cta" onClick={() => setOpen(false)}>
+            hire me
+          </a>
+        </nav>
+
+        <button
+          className="nav-toggle"
+          onClick={() => setOpen(!open)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+        >
+          {open ? <FiX /> : <FiMenu />}
+        </button>
       </div>
-      
-      <img src={menu_open} onClick={openMenu} alt="Open Menu" className='nav-mob-open' />
-      
-      <ul ref={menuRef} className="nav-menu">
-        <img src={menu_close} onClick={closeMenu} alt="Close Menu" className="nav-mob-close" />
-        
-        <li className={menu === "home" ? "active" : ""}>
-          <AnchorLink className='anchor-link' href='#home' offset={100}>
-            <p onClick={() => handleMenuClick("home")}>Home</p>
-          </AnchorLink>
-          {menu === "home" && <img src={underline} alt='' className="nav-underline" />}
-        </li>
-        
-        <li className={menu === "about" ? "active" : ""}>
-          <AnchorLink className='anchor-link' offset={50} href='#about'>
-            <p onClick={() => handleMenuClick("about")}>About Me</p>
-          </AnchorLink>
-          {menu === "about" && <img src={underline} alt='' className="nav-underline" />}
-        </li>
-        
-        <li className={menu === "services" ? "active" : ""}>
-          <AnchorLink className='anchor-link' offset={50} href='#services'>
-            <p onClick={() => handleMenuClick("services")}>Services</p>
-          </AnchorLink>
-          {menu === "services" && <img src={underline} alt='' className="nav-underline" />}
-        </li>
-        
-        <li className={menu === "work" ? "active" : ""}>
-          <AnchorLink className='anchor-link' offset={50} href='#work'>
-            <p onClick={() => handleMenuClick("work")}>Portfolio</p>
-          </AnchorLink>
-          {menu === "work" && <img src={underline} alt='' className="nav-underline" />}
-        </li>
-        
-        <li className={menu === "contact" ? "active" : ""}>
-          <AnchorLink className='anchor-link' offset={50} href='#contact'>
-            <p onClick={() => handleMenuClick("contact")}>Contact</p>
-          </AnchorLink>
-          {menu === "contact" && <img src={underline} alt='' className="nav-underline" />}
-        </li>
-      </ul>
-      
-      <div className="nav-connect">
-        <AnchorLink className='anchor-link' offset={50} href='#contact'>
-          <span>Connect With Me</span>
-        </AnchorLink>
-      </div>
-    </div>
+    </header>
   )
 }
 

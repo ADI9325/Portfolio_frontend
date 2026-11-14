@@ -1,228 +1,142 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import './Contact.css';
-import theme_pattern from '../../assets/theme_pattern.svg';
-import mail_icon from '../../assets/mail_icon.svg';
-import location_icon from '../../assets/location_icon.svg';
-import call_icon from '../../assets/call_icon.svg';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState } from 'react'
+import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import './Contact.css'
+
+// Messages are delivered by Web3Forms (https://web3forms.com) straight to your inbox.
+// The access key is public by design; set it in .env as VITE_WEB3FORMS_KEY.
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit'
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY
+const TIMEOUT_MS = 15000
+const FALLBACK_EMAIL = 'adityabagade04@gmail.com'
+
+const details = [
+  { icon: <FiMail />, label: 'email', value: 'adityabagade04@gmail.com', href: 'mailto:adityabagade04@gmail.com' },
+  { icon: <FiPhone />, label: 'phone', value: '+91 9325253293', href: 'tel:+919325253293' },
+  { icon: <FiMapPin />, label: 'location', value: 'Pune, India · open to remote' },
+]
 
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isFailed, setIsFailed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   useEffect(() => {
-    const submissionStatus = localStorage.getItem('formSubmitted');
-    if (submissionStatus === 'true') {
-      setIsSubmitted(true);
+    try {
+      if (localStorage.getItem('formSubmitted') === 'true') setIsSubmitted(true)
+    } catch {
+      // storage unavailable; ignore
     }
-  }, []);
+  }, [])
 
   const onSubmit = async (event) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    setIsFailed(false);
+    event.preventDefault()
+    const form = event.target
+    const data = Object.fromEntries(new FormData(form))
 
-    const formData = new FormData(event.target);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    // Honeypot: real people never fill this hidden field.
+    if (data.botcheck) return
+
+    if (!WEB3FORMS_KEY) {
+      console.error('VITE_WEB3FORMS_KEY is not set')
+      toast.error(`The form isn't set up yet. Email me at ${FALLBACK_EMAIL}.`)
+      return
+    }
+
+    setIsSubmitting(true)
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
 
     try {
-      const res = await fetch("https://portfolio-backend-1-gwu2.onrender.com/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: json
-      });
+      const res = await fetch(WEB3FORMS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Portfolio: ${data.subject || `message from ${data.name}`}`,
+          from_name: 'Portfolio contact form',
+          name: data.name,
+          email: data.email,
+          replyto: data.email,
+          topic: data.subject || '',
+          message: data.message,
+        }),
+        signal: controller.signal,
+      })
+      const result = await res.json().catch(() => ({}))
+      if (!res.ok || !result.success) throw new Error(result.message || `HTTP ${res.status}`)
 
-      document.querySelector('.contact-submit').classList.add('fly');
-
-      if (res.ok) {
-        setIsSubmitted(true);
-        localStorage.setItem('formSubmitted', 'true');
-
-        // Clear the form fields
-        event.target.reset();
-
-        // Show success message and animation
-        toast.success("Message sent successfully! I'll get back to you soon.", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-
-        setTimeout(() => {
-          setIsSubmitting(false);
-        }, 1000);
-      } else {
-        throw new Error('Failed to submit');
-      }
+      setIsSubmitted(true)
+      try { localStorage.setItem('formSubmitted', 'true') } catch { /* ignore */ }
+      form.reset()
+      toast.success("Message sent. I'll get back to you soon.")
     } catch (err) {
-      console.error('Submission failed:', err);
-      setIsFailed(true);
-      toast.error("Failed to send message. Please try again later.", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      setIsSubmitting(false);
+      console.error('Submission failed:', err)
+      const reason = err.name === 'AbortError' ? 'The server took too long.' : "Couldn't send your message."
+      toast.error(`${reason} Email me at ${FALLBACK_EMAIL}.`)
+    } finally {
+      clearTimeout(timer)
+      setIsSubmitting(false)
     }
-  };
+  }
 
   return (
-    <div id='contact' className='contact'>
-      <div className="title-box">
-        <h1>Get in touch</h1>
-        <img src={theme_pattern} alt="" />
+    <section id="contact" className="section">
+      <div className="section-head">
+        <p className="section-label">04. contact</p>
+        <h2>Let’s work together</h2>
+        <p>Open to full-time roles and freelance projects. Tell me what you’re building and I’ll reply within a day.</p>
       </div>
-      
-      <div className="contact-separator"></div>
-      
-      <div className="contact-section">
-        <div className="contact-left">
-          <div className="contact-subtitle">Contact Me</div>
-          <h1>Let's Work Together</h1>
-          <p>
-            I'm currently available to take on new projects and exciting opportunities. 
-            Whether you have a specific project in mind or just want to discuss potential 
-            collaborations, I'd love to hear from you. Let's create something amazing together!
-          </p>
-          
-          <div className="contact-details">
-            <div className="contact-detail">
-              <img src={mail_icon} alt="Email" />
-              <p>adityabagade04@gmail.com</p>
-            </div>
-            <div className="contact-detail">
-              <img src={call_icon} alt="Phone" />
-              <p>+91 9325253293</p>
-            </div>
-            <div className="contact-detail">
-              <img src={location_icon} alt="Location" />
-              <p>Pune, Maharashtra, India</p>
-            </div>
-          </div>
-        </div>
-        
-        <form
-          onSubmit={onSubmit}
-          className={`contact-right ${isSubmitting ? 'blur' : ''} ${isSubmitted ? 'success' : ''}`}
-        >
-          <div className="form-group">
-            <label htmlFor="name">Your Name</label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Enter your full name"
-              name="name"
-              required
-              disabled={isSubmitted}
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="email">Your Email</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Enter your email address"
-              name="email"
-              required
-              disabled={isSubmitted}
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="subject">Subject</label>
-            <input
-              id="subject"
-              type="text"
-              placeholder="What's this about?"
-              name="subject"
-              disabled={isSubmitted}
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="message">Your Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="6"
-              placeholder="Tell me about your project, ideas, or just say hello..."
-              required
-              disabled={isSubmitted}
-            ></textarea>
-          </div>
 
-          <motion.button
-            type="submit"
-            className={`contact-submit ${isSubmitting || isSubmitted ? 'disabled' : ''}`}
-            disabled={isSubmitting || isSubmitted}
-            whileTap={{ scale: 0.95 }}
-            whileHover={{ scale: isSubmitting || isSubmitted ? 1 : 1.02 }}
-          >
-            {isSubmitting ? (
+      <div className="contact-grid">
+        <div className="contact-details">
+          {details.map((d) => {
+            const inner = (
               <>
-                <div className="loading-spinner"></div>
-                Sending...
+                <span className="contact-icon">{d.icon}</span>
+                <span>
+                  <span className="contact-label mono">{d.label}</span>
+                  <span className="contact-value">{d.value}</span>
+                </span>
               </>
-            ) : isSubmitted ? (
-              '✓ Message Sent Successfully!'
-            ) : isFailed ? (
-              'Try Again'
+            )
+            return d.href ? (
+              <a key={d.label} href={d.href} className="card contact-item">{inner}</a>
             ) : (
-              'Send Message'
-            )}
-          </motion.button>
+              <div key={d.label} className="card contact-item">{inner}</div>
+            )
+          })}
+        </div>
+
+        <form onSubmit={onSubmit} className="card contact-form">
+          <input type="checkbox" name="botcheck" className="contact-honeypot" tabIndex="-1" autoComplete="off" aria-hidden="true" />
+          <div className="form-row">
+            <label>
+              <span className="mono">name</span>
+              <input name="name" type="text" placeholder="Your full name" required disabled={isSubmitted} />
+            </label>
+            <label>
+              <span className="mono">email</span>
+              <input name="email" type="email" placeholder="you@company.com" required disabled={isSubmitted} />
+            </label>
+          </div>
+          <label>
+            <span className="mono">subject</span>
+            <input name="subject" type="text" placeholder="Backend role, freelance project…" disabled={isSubmitted} />
+          </label>
+          <label>
+            <span className="mono">message</span>
+            <textarea name="message" rows="5" placeholder="Tell me about the role or project" required disabled={isSubmitted}></textarea>
+          </label>
+          <button type="submit" className="btn btn-primary contact-submit" disabled={isSubmitting || isSubmitted}>
+            {isSubmitting ? 'sending…' : isSubmitted ? 'message sent ✓' : <>send message <FiSend /></>}
+          </button>
         </form>
-
-        <AnimatePresence>
-          {isSubmitting && (
-            <motion.div
-              className="submission-animation"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="loading-spinner"></div>
-              Sending your message...
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
-      
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        toastStyle={{
-          background: 'rgba(0, 0, 0, 0.9)',
-          border: '1px solid rgba(185, 35, 225, 0.3)',
-          borderRadius: '12px',
-          backdropFilter: 'blur(10px)'
-        }}
-      />
-    </div>
-  );
-};
 
-export default Contact;
+      <ToastContainer position="bottom-right" autoClose={5000} theme="dark" />
+    </section>
+  )
+}
+
+export default Contact

@@ -1,54 +1,33 @@
-import React from 'react';
-import './Footer.css';
-import { FaGithub } from 'react-icons/fa';
-import { SiLeetcode } from "react-icons/si";
-import { MdEmail } from "react-icons/md";
-import theme_pattern from '../../assets/theme_pattern.svg';
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { SiLeetcode } from 'react-icons/si'
+import './Footer.css'
+
+const socials = [
+  { href: 'mailto:adityabagade04@gmail.com', label: 'Email', icon: <FiMail /> },
+  { href: 'https://github.com/ADI9325', label: 'GitHub', icon: <FiGithub /> },
+  { href: 'https://www.linkedin.com/in/its-aadi04/', label: 'LinkedIn', icon: <FiLinkedin /> },
+  { href: 'https://leetcode.com/u/its_adii04/', label: 'LeetCode', icon: <SiLeetcode /> },
+]
 
 const Footer = () => {
   return (
-    <div className='footer'>
-      <div className="footer-top">
-        <div className="footer-top-left">
-          <div className="title-box_nav">
-            <h1>Aditya Bagade</h1>
-            <span className="footer-nav-subtitle">Full-Stack Developer</span>
-            <img className="title-box-nav_img" src={theme_pattern} alt="" />
-          </div>
-          <p>Full-Stack Developer with 2+ years of experience building scalable web applications, SaaS platforms, and AI-powered automation tools. Passionate about creating secure, high-quality solutions using modern technologies.</p>
+    <footer className="footer">
+      <div className="footer-inner">
+        <div>
+          <a href="#home" className="footer-logo mono"><span className="accent">~/</span>aditya</a>
+          <p className="footer-tag">Full-stack developer · Node.js, NestJS, Python, React</p>
         </div>
-        
-        <div className="footer-top-right">
-          {/* Right side content removed */}
-        </div>
-      </div>
-      
-      <div className="footer-separator"></div>
-      
-      <div className="footer-bottom">
-        <p className="footer-bottom-left">© 2024 Aditya Bagade. All rights reserved.</p>
-        <div className="footer-bottom-right">
-          <div className="footer-links">
-            <p>Terms of Service</p>
-            <p>Privacy Policy</p>
-            <p>Contact</p>
-          </div>
-          
-          <div className="social-icons">
-            <a href="mailto:adityabagade04@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
-              <MdEmail />
+        <div className="footer-socials">
+          {socials.map((s) => (
+            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label}>
+              {s.icon}
             </a>
-            <a href="https://github.com/ADI9325" target="_blank" rel="noopener noreferrer" title="GitHub">
-              <FaGithub />             
-            </a>
-            <a href="https://leetcode.com/u/its_adii04/" target="_blank" rel="noopener noreferrer" title="LeetCode">
-              <SiLeetcode />
-            </a>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+      <p className="footer-copy mono">© {new Date().getFullYear()} Aditya Bagade · built with React + Vite</p>
+    </footer>
   )
 }
 
-export default Footer;
+export default Footer

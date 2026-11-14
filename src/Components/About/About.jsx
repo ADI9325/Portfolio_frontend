@@ -1,103 +1,78 @@
-import React from 'react'
 import './About.css'
-import theme_pattern from '../../assets/theme_pattern.svg'
+
+const skillGroups = [
+  {
+    title: 'Backend Development',
+    skills: ['Node.js', 'TypeScript', 'NestJS', 'Express.js', 'Python', 'FastAPI', 'REST APIs', 'JWT Authentication', 'Role-Based Access Control (RBAC)', 'Background Jobs & Queues', 'Scheduled Jobs (Cron)', 'Third-Party API Integrations'],
+  },
+  {
+    title: 'Frontend Development',
+    skills: ['React.js', 'Next.js (App Router)', 'Server Components', 'SSR / SSG', 'JavaScript (ES6+)', 'Redux Toolkit', 'RTK Query', 'Tailwind CSS', 'ShadCN UI', 'HTML5', 'CSS3'],
+  },
+  {
+    title: 'Databases & ORMs',
+    skills: ['PostgreSQL', 'MySQL', 'Redis', 'Supabase', 'MongoDB', 'Drizzle ORM', 'Schema Design', 'Query Optimization'],
+  },
+  {
+    title: 'Cloud & DevOps',
+    skills: ['AWS (EC2, RDS, S3)', 'Docker', 'CI/CD', 'GitHub Actions', 'NGINX', 'Caddy', 'Vercel', 'Linux'],
+  },
+  {
+    title: 'AI & Tools',
+    skills: ['Google Gemini (Function Calling)', 'Cursor', 'Claude', 'UiPath (RPA)', 'Automated Testing', 'Git & GitHub', 'Postman', 'Jira'],
+  },
+]
+
+const highlights = [
+  { value: 'CodeMirror Technologies', label: 'Full-Stack Developer · 01/2023 – present' },
+  { value: 'CodeClout Technology', label: 'Full-Stack Developer · 08/2021 – 01/2023' },
+  { value: 'B.E. Computer Science', label: 'Savitribai Phule Pune University' },
+]
 
 const About = () => {
   return (
-    <div id='about' className='about'> 
-      <div className="title-box">
-        <h1>About Me</h1>
-        <img src={theme_pattern} alt="pattern" />
+    <section id="about" className="section">
+      <div className="section-head">
+        <p className="section-label">01. about</p>
+        <h2>About me</h2>
       </div>
-      
-      <div className="about-separator"></div>
-      
-      <div className="about-sections">
-        <div className="about-content">
-          <div className="about-para">
-            <p>
-              I’m <strong>Aditya Bagade</strong>, a results-driven <strong>Full-Stack Developer with 4+ years of experience</strong> building scalable web applications, SaaS platforms, and AI-powered systems using <strong>React, TypeScript, Node.js, Python, and modern databases</strong>. Based in <strong>Pune, India</strong>, I have extensive experience working independently and collaborating with global remote teams.
-            </p>
 
-            <p>
-              At <strong>CodeClout Technology</strong>, I played a key role in building a <strong>multi-tenant school management SaaS</strong> supporting 6+ user roles, implementing JWT-based RBAC, secure REST APIs, and optimized database schemas. As a <strong>Freelance Developer at Mendel Lab</strong>, I developed an <strong>AI-driven GitHub integration platform</strong> for repository analysis and pull-request reviews, handling complete <strong>DevOps setup with AWS EC2, NGINX, webhooks, and production-grade security</strong>.
-            </p>
-          </div>
-          
-          <div className="about-separator"></div>
-          
-          <div className="about-skills">
-            {/* Frontend Development */}
-            <div className="skills-category">
-              <h3>Frontend Development</h3>
-              <div className="skills-grid">
-                <div className="skill-box">React.js</div>
-                <div className="skill-box">Next.js</div>
-                <div className="skill-box">TypeScript</div>
-                <div className="skill-box">JavaScript (ES6+)</div>
-                <div className="skill-box">HTML5</div>
-                <div className="skill-box">CSS3</div>
-                <div className="skill-box">Tailwind CSS</div>
-                <div className="skill-box">ShadCN UI</div>
-                <div className="skill-box">Material UI</div>
-                <div className="skill-box">Redux Toolkit</div>
-                <div className="skill-box">RTK Query</div>
-                <div className="skill-box">Context API</div>
-                <div className="skill-box">Responsive & Accessible UI</div>
-              </div>
-            </div>
-
-            {/* Backend Development */}
-            <div className="skills-category">
-              <h3>Backend Development</h3>
-              <div className="skills-grid">
-                <div className="skill-box">Node.js</div>
-                <div className="skill-box">Express.js</div>
-                <div className="skill-box">Python</div>
-                <div className="skill-box">RESTful APIs</div>
-                <div className="skill-box">JWT Authentication</div>
-                <div className="skill-box">Role-Based Access Control (RBAC)</div>
-                <div className="skill-box">API Integrations</div>
-                <div className="skill-box">Nodemailer</div>
-                <div className="skill-box">Multer</div>
-                <div className="skill-box">GitHub OAuth</div>
-                <div className="skill-box">GitHub Apps API</div>
-              </div>
-            </div>
-
-            {/* Database & Cloud */}
-            <div className="skills-category">
-              <h3>Database & Cloud</h3>
-              <div className="skills-grid">
-                <div className="skill-box">MySQL</div>
-                <div className="skill-box">MongoDB</div>
-                <div className="skill-box">PostgreSQL</div>
-                <div className="skill-box">Mongoose</div>
-                <div className="skill-box">AWS EC2</div>
-                <div className="skill-box">AWS S3</div>
-                <div className="skill-box">NGINX</div>
-                <div className="skill-box">CI/CD Basics</div>
-              </div>
-            </div>
-
-            {/* AI & Engineering Practices */}
-            <div className="skills-category">
-              <h3>AI & Engineering Practices</h3>
-              <div className="skills-grid">
-                <div className="skill-box">AI Integrations</div>
-                <div className="skill-box">Prompt Engineering</div>
-                <div className="skill-box">Data Structures</div>
-                <div className="skill-box">Algorithms</div>
-                <div className="skill-box">Object-Oriented Programming</div>
-                <div className="skill-box">Clean Architecture</div>
-                <div className="skill-box">System Design (Basics)</div>
-                <div className="skill-box">Git & GitHub</div>
-              </div>
-            </div>
-          </div>
+      <div className="about-grid">
+        <div className="about-text">
+          <p>
+            I’m <strong>Aditya Bagade</strong>, a <strong>Full-Stack Developer with 4+ years of experience</strong> building production SaaS applications end to end. My focus is the backend: <strong>Node.js, TypeScript, NestJS and Express.js</strong> for REST APIs, authentication, PostgreSQL schema design, background jobs and integrations, plus <strong>Python (FastAPI)</strong> services and <strong>React / Next.js</strong> frontends. I’m based in <strong>Pune, India</strong> and open to remote work.
+          </p>
+          <p>
+            At <strong>CodeMirror Technologies</strong>, I built an <strong>HRMS, projects and invoicing platform</strong> on Node.js, Express and PostgreSQL (GST invoicing, payroll, role-based access), and was the primary engineer on <strong>Finicify</strong>, a multi-tenant fintech SaaS with FastAPI APIs, 20+ scheduled data jobs, 300+ automated tests and Docker CI/CD on AWS. Before that, at <strong>CodeClout Technology</strong>, I built Node.js REST APIs and PostgreSQL schemas for a school management SaaS.
+          </p>
         </div>
+
+        <ul className="about-timeline">
+          {highlights.map((h) => (
+            <li key={h.value} className="card">
+              <span className="about-dot" aria-hidden="true"></span>
+              <div>
+                <div className="about-tl-title">{h.value}</div>
+                <div className="about-tl-sub mono">{h.label}</div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+
+      <div className="about-skills">
+        {skillGroups.map((group) => (
+          <div className="about-skill-group" key={group.title}>
+            <h3 className="mono"><span className="accent">#</span> {group.title.toLowerCase()}</h3>
+            <div className="chip-list">
+              {group.skills.map((skill) => (
+                <span className="chip" key={skill}>{skill}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }
 
