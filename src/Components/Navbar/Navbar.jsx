@@ -37,7 +37,7 @@ const Navbar = () => {
   return (
     <header className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
       <div className="nav-inner">
-        <a href="#home" className="nav-logo mono" onClick={() => setOpen(false)}>
+        <a href="/" className="nav-logo mono" onClick={() => setOpen(false)}>
           <span className="accent">~/</span>aditya
         </a>
 
@@ -45,14 +45,14 @@ const Navbar = () => {
           {links.map(({ id, label }, i) => (
             <a
               key={id}
-              href={`#${id}`}
+              href={`/#${id}`}
               className={`mono ${active === id ? 'active' : ''}`}
               onClick={() => setOpen(false)}
             >
               <span className="nav-num">0{i + 1}.</span>{label}
             </a>
           ))}
-          <a href="#contact" className="btn btn-primary nav-cta" onClick={() => setOpen(false)}>
+          <a href="/#contact" className="btn btn-primary nav-cta" onClick={() => setOpen(false)}>
             hire me
           </a>
         </nav>

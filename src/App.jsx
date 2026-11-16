@@ -5,17 +5,27 @@ import Services from './Components/Services/Services'
 import MyWork from './Components/MyWork/MyWork'
 import Contact from './Components/Contact/Contact'
 import Footer from './Components/Footer/Footer'
+import CaseStudy from './Components/CaseStudy/CaseStudy'
+import { findProject } from './routes'
 
-const App = () => {
+const App = ({ path }) => {
+  const project = findProject(path)
+
   return (
     <div>
-      <Navbar/>
-      <Hero/>
-      <About/>
-      <Services/>
-      <MyWork/>
-      <Contact/>
-      <Footer/>
+      <Navbar />
+      {project ? (
+        <CaseStudy project={project} />
+      ) : (
+        <>
+          <Hero />
+          <About />
+          <Services />
+          <MyWork />
+          <Contact />
+        </>
+      )}
+      <Footer />
     </div>
   )
 }

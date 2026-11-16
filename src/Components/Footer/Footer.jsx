@@ -14,7 +14,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-inner">
         <div>
-          <a href="#home" className="footer-logo mono"><span className="accent">~/</span>aditya</a>
+          <a href="/" className="footer-logo mono"><span className="accent">~/</span>aditya</a>
           <p className="footer-tag">Full-stack developer · Node.js, NestJS, Python, React</p>
         </div>
         <div className="footer-socials">

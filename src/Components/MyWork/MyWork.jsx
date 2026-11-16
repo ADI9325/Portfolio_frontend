@@ -1,4 +1,4 @@
-import { FiArrowUpRight } from 'react-icons/fi'
+import { FiArrowRight } from 'react-icons/fi'
 import './MyWork.css'
 import mywork_data from '../../assets/mywork_data'
 
@@ -17,7 +17,7 @@ const MyWork = () => {
       <div className="work-grid">
         {mywork_data.map((work) => (
           <article key={work.title} className="card work-card">
-            <div className="work-cover">
+            <a href={`/work/${work.slug}/`} className="work-cover" tabIndex="-1" aria-hidden="true">
               {work.cover ? (
                 <img src={work.cover} alt={`${work.title} screenshot`} loading="lazy" decoding="async" width="1600" height="900" />
               ) : (
@@ -25,21 +25,19 @@ const MyWork = () => {
                   <span className="accent">{'</>'}</span> {initials(work.title)}
                 </div>
               )}
-            </div>
+            </a>
             <div className="work-body">
               <span className="work-cat mono">{work.category}</span>
-              <h3>{work.title}</h3>
+              <h3><a href={`/work/${work.slug}/`}>{work.title}</a></h3>
               <p>{work.summary}</p>
               <div className="chip-list">
                 {work.stack.map((tech) => (
                   <span key={tech} className="chip">{tech}</span>
                 ))}
               </div>
-              {work.link && (
-                <a className="work-link mono" href={work.link} target="_blank" rel="noopener noreferrer">
-                  {(work.linkLabel || 'case study').toLowerCase()} <FiArrowUpRight />
-                </a>
-              )}
+              <a className="work-link mono" href={`/work/${work.slug}/`}>
+                case study <FiArrowRight />
+              </a>
             </div>
           </article>
         ))}
